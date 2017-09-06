@@ -38,11 +38,12 @@ try:
 except ImportError:
     exit("This script requires the numpy module\nInstall with: sudo pip install numpy")
 
-
-
 global talking
+
+# These are the colors I defined to randomly flash during talking
 colors = [[247, 90, 0],[2, 103, 193],[242, 35, 31],[255, 211, 38],[51, 173, 38]]
 
+# Lights pulse on when hotword is detected
 def pulse():
     clear()
     set_brightness(0.05)
@@ -74,7 +75,8 @@ def pulse():
     set_pixel(7, 2, 103, 193)
     show()
 
-def talk():    
+# Random light flashes in predefined colors while the assistant talks
+def talk():
     set_brightness(0.05)
 
     while True:
@@ -87,10 +89,12 @@ def talk():
         	clear()
         	break
 
+# Clear Blinkt LEDs
 def clear():
     set_all(0,0,0)
     show()
 
+# Process assistant events
 def process_event(event):
     global talking
 
@@ -103,7 +107,7 @@ def process_event(event):
     if event.type == EventType.ON_CONVERSATION_TURN_FINISHED:
         talking = 0
         clear()
-        
+
     if event.type == EventType.ON_START_FINISHED:
         set_brightness(0.05)
         set_pixel(0, 2, 103, 193)
