@@ -1,0 +1,9 @@
+[Unit]
+Description=Google Assistant Demo App
+Wants=network-online.target
+After=network-online.target
+[Service]
+ExecStart=/home/pi/launch-assistant.sh
+User=pi
+[Install]
+WantedBy=multi-user.target
